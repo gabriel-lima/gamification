@@ -11,3 +11,5 @@ $ pip install -r requirements.txt
 
 $ python application/server.py
 
+Acessar: http://localhost:5000/
+
