@@ -9,3 +9,5 @@ $ mkvirtualenv gamification
 
 $ pip install -r requirements.txt
 
+$ python application/server.py
+
