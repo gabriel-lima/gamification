@@ -1,109 +1,199 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Material Design Lite</title>
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <title>Minhas Vendas | Software de Gestão de Vendas</title>
 
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <!-- Favicons-->
+    <link rel="icon" href="http://demo.geekslabs.com/materialize/v1.1/images/favicon/favicon-32x32.png" sizes="32x32">
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed"
+          href="http://demo.geekslabs.com/materialize/v1.1/images/favicon/apple-touch-icon-152x152.png">
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+    <!-- For Windows Phone -->
+	
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+    <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+	
+	<style>
+		span.badge.new:after {
+		  content: " visitas";
+		}
+	</style>
+</head>
 
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#3372DF">
+<body class="loaded">
+<!-- Start Page Loading -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<!-- End Page Loading -->
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <style>
-    #view-source {
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 40px;
-      margin-bottom: 40px;
-      z-index: 900;
-    }
-    </style>
-  </head>
-  <body>
-    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-      <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
-        <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Home</span>
-          <div class="mdl-layout-spacer"></div>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search" />
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START HEADER -->
+<header id="header" class="page-topbar">
+    <!-- start header nav-->
+    <div class="navbar-fixed">
+        <nav class="cyan">
+            <div class="nav-wrapper">
+                <h1 class="logo-wrapper"><a href=""class="brand-logo darken-1">
+					<img style="height: 70px;margin-top: -8px;margin-left: -8px;" src="{{ url_for('static', filename='images/logo.png') }}" alt="materialize logo"></a></h1>
+                <ul class="right hide-on-med-and-down">
+                    <li class="search-out">
+                        <input type="text" class="search-out-text">
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="waves-effect waves-block waves-light show-search"><i
+                                class="mdi-action-search"></i></a>
+                    </li>
+                    <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light"><i
+                            class="mdi-social-notifications"></i></a>
+                    </li>
+                    <li><a href=""
+                           data-activates="chat-out" class="waves-effect waves-block waves-light chat-collapse"><i
+                            class="mdi-communication-chat"></i></a>
+                    </li>
+                </ul>
             </div>
-          </div>
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="material-icons">more_vert</i>
-          </button>
-          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">About</li>
-            <li class="mdl-menu__item">Contact</li>
-            <li class="mdl-menu__item">Legal information</li>
-          </ul>
-        </div>
-      </header>
-      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-        <header class="demo-drawer-header">
-          <img src="{{ url_for('static', filename='images/user.jpg') }}" class="demo-avatar">
-          <div class="demo-avatar-dropdown">
-            <span>hello@email.com</span>
-            <div class="mdl-layout-spacer"></div>
-            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-              <i class="material-icons">arrow_drop_down</i>
-            </button>
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <li class="mdl-menu__item">hello@email.com</li>
-              <li class="mdl-menu__item">info@domain.net</li>
-              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
-            </ul>
-          </div>
-        </header>
-        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">home</i>Home</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">inbox</i>Inbox</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">delete</i>Trash</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">report</i>Spam</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">forum</i>Forums</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">flag</i>Updates</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">local_offer</i>Promos</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">shopping_cart</i>Purchases</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">people</i>Social</a>
-          <div class="mdl-layout-spacer"></div>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">help_outline</i></a>
         </nav>
-      </div>
-      <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content">
-          
-          {% block body %}
-		  {% endblock %}
-		  
-        </div>
-      </main>
     </div>
-      
-      <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-  </body>
-<html>
+    <!-- end header nav-->
+</header>
+<!-- END HEADER -->
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START MAIN -->
+<div id="main">
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+
+        <!-- START LEFT SIDEBAR NAV-->
+        <aside id="left-sidebar-nav">
+            <ul id="slide-out" class="side-nav fixed leftside-navigation ps-container ps-active-y"
+                style="width: 240px;">
+                <li class="user-details cyan darken-2">
+                    <div class="row">
+                        <div class="col col s4 m4 l4">
+                            <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="" class="circle responsive-img valign profile-image">
+                        </div>
+                        <div class="col col s8 m8 l8">
+                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="" data-activates="profile-dropdown">Júlia<i class="mdi-navigation-arrow-drop-down right"></i></a>
+                            <ul id="profile-dropdown" class="dropdown-content">
+                                <li>
+                                    <a href=""><i class="mdi-action-face-unlock"></i> Perfil</a>
+                                </li>
+                                <li>
+                                    <a href=""><i class="mdi-action-settings"></i> Opções</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href=""><i class="mdi-hardware-keyboard-tab"></i> Sair</a>
+                                </li>
+                            </ul>
+                            <p class="user-roal">Administrador</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="bold">
+					<a href="" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
+                </li>
+                <li class="bold">
+					<a href="" class="waves-effect waves-cyan"><i class="material-icons">work</i> Vendas</a>
+                </li>
+                <li class="bold">
+					<a href="" class="waves-effect waves-cyan"><i class="material-icons">event_note</i> Agenda
+					<span class="new badge">4</span></a>
+                </li>
+                <li class="bold">
+					<a href="" class="waves-effect waves-cyan"><i class="material-icons">attach_money</i> Finanças</a>
+                </li>
+                <li class="bold">
+					<a href="" class="waves-effect waves-cyan"><i class="material-icons">contacts</i> CRM</a>
+                </li>
+            </ul>
+        </aside>
+        <!-- END LEFT SIDEBAR NAV-->
+
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+        <!-- START CONTENT -->
+        <section id="content">
+
+			{% block breadcrumbs %}
+			{% endblock %}
+
+            <!--start container-->
+            <div class="container">
+                <div class="section">
+					{% block conteudo %}
+					{% endblock %}
+                </div>
+            </div>
+			
+			<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+			    <a class="btn-floating btn-large red">
+			      <i class="large material-icons">add</i>
+			    </a>
+			    <ul>
+			      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></i></a></li>
+			      <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+			      <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+			      <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+			    </ul>
+			  </div>
+        </section>
+        <!-- END CONTENT -->
+
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+        <!-- START RIGHT SIDEBAR NAV-->
+        <aside id="right-sidebar-nav">
+            <ul id="chat-out" class="side-nav rightside-navigation right-aligned ps-container ps-active-y"
+                style="right: -250px; height: 739px;">
+                <li class="li-hover">
+                    <a href="" data-activates="chat-out"
+                       class="chat-close-collapse right"><i class="mdi-navigation-close"></i></a>
+
+                    <div id="right-search" class="row">
+                        <form class="col s12">
+                            <div class="input-field">
+                                <i class="mdi-action-search prefix"></i>
+                                <input id="icon_prefix3" type="text" class="validate">
+                                <label for="icon_prefix">Search</label>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+        <!-- LEFT RIGHT SIDEBAR NAV-->
+
+    </div>
+    <!-- END WRAPPER -->
+
+</div>
+<!-- END MAIN -->
+
+<!-- jQuery Library -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
+<!--materialize js-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+
+{% block js %}
+{% endblock %}
+
+</body>
+
+</html>
