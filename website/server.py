@@ -10,9 +10,14 @@ def index():
     return 'Hello World'
 
 
-@app.route('/clientes', methods=['GET'])
-def novo_evento():
+@app.route('/clientes/cadastrar', methods=['GET'])
+def novo_cliente():
     return render_template('clientes/novo.html')
+
+
+@app.route('/clientes', methods=['GET'])
+def lista_de_clientes():
+    return render_template('clientes/lista.html')
 
 
 if __name__ == '__main__':
