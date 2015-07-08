@@ -10,18 +10,13 @@ def index():
     return 'Hello World'
 
 
-@app.route('/eventos', methods=['GET'])
+@app.route('/clientes', methods=['GET'])
 def novo_evento():
-    return render_template('eventos/novo.html')
-
-
-@app.route('/cenarios', methods=['GET'])
-def novo_cenario():
-    return render_template('cenarios/novo.html')
+    return render_template('clientes/novo.html')
 
 
 if __name__ == '__main__':
-    app.secret_key = ')\xe8\xd3\x1e\xf3\x06$\x9ct\xb4\xcc$3\xd6\xf6/St\xd9\xad(\xe4h1'
+    app.secret_key = '\xec\x84j\xcdY\xc7\xf7".\x0e\xf4o>\x0f\xc9\x88f\xf4svPG\xec\x8b'
     app.debug = True
     app.run()
     
