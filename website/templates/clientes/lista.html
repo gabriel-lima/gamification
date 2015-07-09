@@ -27,9 +27,9 @@
                 <table class="hoverable">
                     <thead>
                     <tr>
-                        <th data-field="id">Name</th>
-                        <th data-field="name">Item Name</th>
-                        <th data-field="price">Item Price</th>
+                        <th data-field="id">Nome</th>
+                        <th data-field="name">Sobrenome</th>
+                        <th data-field="price">E-mail</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,19 +59,10 @@
         </div>
     </div>
 
-{% endblock %}
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large waves-effect waves-light red" href="{{ url_for('novo_cliente') }}">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
 
-{% block js %}
-    <script>
-        $(document).ready(function () {
-            $(window).load(function () {
-                setTimeout(function () {
-                    $('.preloader-wrapper').fadeOut('slow', function () {
-                        $('.conteudo').fadeIn('slow');
-                    });
-
-                }, 2000);
-            });
-        });
-    </script>
 {% endblock %}
