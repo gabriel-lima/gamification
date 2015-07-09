@@ -1,7 +1,7 @@
 # encoding: utf-8
 from flask import Flask, render_template, request, redirect, url_for
 
-import pdb
+# import pdb
 
 
 app = Flask(__name__)
@@ -25,7 +25,7 @@ def criar_cliente():
     print request.form['email']
     print request.form['telefone']
     print request.form['tipo_pessoa']
-    print request.form['data_nascimento']
+    # print request.form['data_nascimento']
     print request.form['observacoes']
 
     return redirect(url_for('lista_de_clientes'))
