@@ -9,7 +9,7 @@ $ mkvirtualenv gamification
 
 $ pip install -r requirements.txt
 
-$ python application/server.py
+$ python runserver.py
 
 Acessar: http://localhost:5000/
 
