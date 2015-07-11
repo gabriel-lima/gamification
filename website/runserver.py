@@ -1,8 +1,6 @@
 # encoding: utf-8
 from flask import Flask, render_template, request, redirect, url_for
 
-# import pdb
-
 
 app = Flask(__name__)
 
@@ -19,7 +17,6 @@ def novo_cliente():
 
 @app.route('/clientes/cadastrar', methods=['POST'])
 def criar_cliente():
-    # pdb.set_trace()
     print request.form['nome']
     print request.form['sobrenome']
     print request.form['email']
