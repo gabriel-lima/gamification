@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %} | Login {% endblock %}
+
+{% block conteudo %}
+    <main class="page-content">
+        <div class="page-inner" style="min-height:635px !important">
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="col-md-3 center">
+                        <div class="login-box">
+                            <a href="http://lambdathemes.in/admin1/index.html"
+                               class="logo-name text-lg text-center">Gamification</a>
+
+                            <p class="text-center m-t-md">Por favor, insira o login da sua conta</p>
+
+                            <form class="m-t-md" action="http://lambdathemes.in/admin1/index.html">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Senha" required="">
+                                </div>
+                                <button type="submit" class="btn btn-success btn-block">Entrar</button>
+                                <a href="http://lambdathemes.in/admin1/forgot.html"
+                                   class="display-block text-center m-t-md text-sm">Esqueceu a senha?</a>
+
+                                <p class="text-center m-t-xs text-sm">Não tem uma conta?</p>
+                                <a href="http://lambdathemes.in/admin1/register.html"
+                                   class="btn btn-default btn-block m-t-md">Criar uma conta</a>
+                            </form>
+                            <p class="text-center m-t-xs text-sm">2015 © Gamification by Gabriel.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+            </div>
+            <!-- Main Wrapper -->
+        </div>
+        <!-- Page Inner -->
+    </main>
+    <!-- Page Content -->
+{% endblock %}

@@ -10,6 +10,16 @@ def index():
     return 'Hello World'
 
 
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('login.html')
+
+
+@app.route('/registrar', methods=['GET'])
+def registrar():
+    return render_template('registrar.html')
+
+
 @app.route('/eventos', methods=['GET'])
 def novo_evento():
     return render_template('eventos/novo.html')

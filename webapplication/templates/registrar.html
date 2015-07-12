@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %} | Registrar {% endblock %}
+
+{% block conteudo %}
+    <main class="page-content">
+        <div class="page-inner" style="min-height:635px !important">
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="col-md-3 center">
+                        <div class="login-box">
+                            <a href="http://lambdathemes.in/admin1/index.html"
+                               class="logo-name text-lg text-center">Gamification</a>
+
+                            <p class="text-center m-t-md">Criar uma conta do Gamification</p>
+
+                            <form class="m-t-md" action="" method="post">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nome" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Senha" required="">
+                                </div>
+                                <label>
+                                    <div class="checker"><span><input type="checkbox"></span></div>
+                                    Concorda com os termos e condições de uso
+                                </label>
+                                <button type="submit" class="btn btn-success btn-block m-t-xs">Criar</button>
+                                <p class="text-center m-t-xs text-sm">Already have an account?</p>
+                                <a href="http://lambdathemes.in/admin1/login.html"
+                                   class="btn btn-default btn-block m-t-xs">Login</a>
+                            </form>
+                            <p class="text-center m-t-xs text-sm">2015 © Gamification by Gabriel.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+            </div>
+            <!-- Main Wrapper -->
+        </div>
+        <!-- Page Inner -->
+    </main>
+    <!-- Page Content -->
+{% endblock %}
