@@ -7,17 +7,17 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Hello World'
+    return render_template('base.html')
 
 
 @app.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html')
+    return render_template('/login/login.html')
 
 
 @app.route('/registrar', methods=['GET'])
 def registrar():
-    return render_template('registrar.html')
+    return render_template('/registrar/registrar.html')
 
 
 @app.route('/eventos', methods=['GET'])
