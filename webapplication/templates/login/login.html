@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>Gamification | Login</title>
+  <title>Gamification | Login</title>
 
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <meta charset="UTF-8">
-    <meta name="description" content="Gamification for your business">
-    <meta name="keywords" content="gamification">
-    <meta name="author" content="Gabriel Lima">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta charset="UTF-8">
+  <meta name="description" content="Gamification for your business">
+  <meta name="keywords" content="gamification">
+  <meta name="author" content="Gabriel Lima">
 
-    {% include "style.html" %}
+  {% include "style.html" %}
 
-    <script src="{{ url_for('static', filename='plugins/3d-bold-navigation/js/modernizr.js') }}"></script>
-    <script src="{{ url_for('static', filename='plugins/offcanvasmenueffects/js/snap.svg-min.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/3d-bold-navigation/js/modernizr.js') }}"></script>
+  <script src="{{ url_for('static', filename='plugins/offcanvasmenueffects/js/snap.svg-min.js') }}"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
 </head>
 
 <body class="page-login">
-<main class="page-content">
+  <main class="page-content">
     <div class="page-inner" style="min-height:635px !important">
-        <div id="main-wrapper">
-            <div class="row">
-                <div class="col-md-3 center">
-                    <div class="login-box">
-                        <a href="http://lambdathemes.in/admin1/index.html"
-                           class="logo-name text-lg text-center">Gamification</a>
+      <div id="main-wrapper">
+        <div class="row">
+          <div class="col-md-3 center">
+            <div class="login-box">
+              <a href="http://lambdathemes.in/admin1/index.html"
+              class="logo-name text-lg text-center">Gamification</a>
 
-                        <p class="text-center m-t-md">Por favor, insira o login da sua conta</p>
+              <p class="text-center m-t-md">Por favor, insira o login da sua conta</p>
 
-                        <form class="m-t-md" action="http://lambdathemes.in/admin1/index.html">
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email" required="">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Senha" required="">
-                            </div>
-                            <button type="submit" class="btn btn-success btn-block">Entrar</button>
-                            <a href="http://lambdathemes.in/admin1/forgot.html"
-                               class="display-block text-center m-t-md text-sm">Esqueceu a senha?</a>
-
-                            <p class="text-center m-t-xs text-sm">Não tem uma conta?</p>
-                            <a href="http://lambdathemes.in/admin1/register.html"
-                               class="btn btn-default btn-block m-t-md">Criar uma conta</a>
-                        </form>
-                        <p class="text-center m-t-xs text-sm">2015 © Gamification by Gabriel.</p>
-                    </div>
+              <form class="m-t-md" action="http://lambdathemes.in/admin1/index.html">
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Email" required="">
                 </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Senha" required="">
+                </div>
+                <button type="submit" class="btn btn-success btn-block">Entrar</button>
+                <a href="http://lambdathemes.in/admin1/forgot.html"
+                class="display-block text-center m-t-md text-sm">Esqueceu a senha?</a>
+
+                <p class="text-center m-t-xs text-sm">Não tem uma conta?</p>
+                <a href="http://lambdathemes.in/admin1/register.html"
+                class="btn btn-default btn-block m-t-md">Criar uma conta</a>
+              </form>
+              <p class="text-center m-t-xs text-sm">2015 © Gamification by Gabriel.</p>
             </div>
-            <!-- Row -->
+          </div>
         </div>
-        <!-- Main Wrapper -->
+        <!-- Row -->
+      </div>
+      <!-- Main Wrapper -->
     </div>
     <!-- Page Inner -->
-</main>
-<!-- Page Content -->
+  </main>
+  <!-- Page Content -->
 
-{% include "javascript.html" %}
+  {% include "javascript.html" %}
 
 </body>
 </html>
