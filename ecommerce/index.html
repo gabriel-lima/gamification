@@ -20,7 +20,7 @@
 	<!-- Component styles -->
 	<link rel="stylesheet" type="text/css" href="css/component.css" />
 	<script src="js/modernizr.custom.js"></script>
-    
+
 </head>
 <body>
 	<!-- Bottom bar with filter and cart info -->
@@ -561,22 +561,17 @@
 	<script src="js/isotope.pkgd.min.js"></script>
 	<script src="js/flickity.pkgd.min.js"></script>
 	<script src="js/main.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
 
-    <div id='cptup-ready'></div>
-    <script data-cfasync='false' type='text/javascript'>
-      window.captain = {up: function(fn) { captain.topics.push(fn) }, topics: []};
-      // Add your settings here:
-      captain.up({
-        api_key: '5521a41673873a66c500007b',
-        client_token: '3659b45bdb579bdcc2aa593b1747a538e0bfa2e9'
-      });
-    </script>
-    <script data-cfasync='false' type='text/javascript'>
-      (function() {
-        var cpt = document.createElement('script'); cpt.type = 'text/javascript'; cpt.async = true;
-        cpt.src = 'js/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(cpt);
-      })();
+    <script>
+    (function() {
+        $(document).ready(function($) {
+            var jsonp_url = "http://127.0.0.1:5001/widget?callback=?";
+            $.getJSON(jsonp_url, function(data) {
+              $('title').html("This data comes from another server: " + data.html);
+            });
+        });
+    })();
     </script>
 
 </body>
