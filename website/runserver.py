@@ -10,7 +10,7 @@ def widget():
     callback = request.args.get('callback')
     texto = json.dumps({'html': 'TESTE'})
     jsonp = '%s(%s)' % (callback, texto)
-    return Response(jsonp, content_type='text/javscript')
+    return Response(jsonp, content_type='text/javascript')
 
 
 @app.route('/')
