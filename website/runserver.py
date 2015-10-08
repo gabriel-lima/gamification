@@ -1,8 +1,16 @@
 # encoding: utf-8
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, json, Response
 
 
 app = Flask(__name__)
+
+
+@app.route('/widget', methods=['GEt'])
+def widget():
+    callback = request.args.get('callback')
+    texto = json.dumps({'html': 'TESTE'})
+    jsonp = '%s(%s)' % (callback, texto)
+    return Response(jsonp, content_type='text/javscript')
 
 
 @app.route('/')
