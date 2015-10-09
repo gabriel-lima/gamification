@@ -671,7 +671,7 @@
                 script.async = true;
                 script.src = src;
 
-                document.getElementsByTagName('head')[0].appendChild(script);
+                document.getElementsByTagName('body')[0].appendChild(script);
             };
 
             return that;
@@ -683,13 +683,16 @@
                 callbackName: 'handleStuff',
                 onSuccess: function (json) {
                     console.log('success!', json);
+                    var script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.text = json.script;
+                    document.getElementsByTagName('body')[0].appendChild(script);
                 },
                 onTimeout: function () {
                     console.log('timeout!');
                 },
                 timeout: 5
             });
-
         });
     })();
 </script>

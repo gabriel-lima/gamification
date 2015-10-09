@@ -5,30 +5,16 @@ from flask import Flask, render_template, request, redirect, url_for, json, Resp
 app = Flask(__name__)
 
 
-@app.route('/widget', methods=['GEt'])
+@app.route('/widget', methods=['GET'])
 def widget():
-    callback = request.args.get('callback')
 
-    html = 'Teste'
-    script = '''
-    <script>
-    $(function () {
-        humane.log('teste');
-    });
-    </script>
-    '''
-    css = '''
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css'>
+    data = {}
+    data['success'] = True
+    data['script'] = '''
+        humane.log('success!');
     '''
 
-    conteudo_em_json = json.dumps(
-        {
-            'html': html,
-            'script': script,
-            'css': css,
-        })
-
-    jsonp = '%s(%s)' % (callback, conteudo_em_json)
+    jsonp = '%s(%s)' % (request.args.get('callback'), json.dumps(data))
     return Response(jsonp, content_type='text/javascript')
 
 
