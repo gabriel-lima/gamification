@@ -8,8 +8,27 @@ app = Flask(__name__)
 @app.route('/widget', methods=['GEt'])
 def widget():
     callback = request.args.get('callback')
-    texto = json.dumps({'html': 'TESTE'})
-    jsonp = '%s(%s)' % (callback, texto)
+
+    html = 'Teste'
+    script = '''
+    <script>
+    $(function () {
+        humane.log('teste');
+    });
+    </script>
+    '''
+    css = '''
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css'>
+    '''
+
+    conteudo_em_json = json.dumps(
+        {
+            'html': html,
+            'script': script,
+            'css': css,
+        })
+
+    jsonp = '%s(%s)' % (callback, conteudo_em_json)
     return Response(jsonp, content_type='text/javascript')
 
 
