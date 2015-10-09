@@ -22,7 +22,6 @@
     <!-- Component styles -->
     <link rel="stylesheet" type="text/css" href="css/component.css"/>
     <script src="js/modernizr.custom.js"></script>
-
 </head>
 <body>
 <!-- Bottom bar with filter and cart info -->
@@ -613,15 +612,84 @@
 <script src="js/isotope.pkgd.min.js"></script>
 <script src="js/flickity.pkgd.min.js"></script>
 <script src="js/main.js"></script>
-<script src="js/jquery-2.1.4.min.js"></script>
 
 <script>
     (function () {
-        $(document).ready(function ($) {
-            var jsonp_url = "http://127.0.0.1:5001/widget?callback=?";
-            $.getJSON(jsonp_url, function (data) {
-                $('title').html("This data comes from another server: " + data.html);
+
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'http://127.0.0.1:5001/static/cdn/css/libnotify.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+        function loadScript(url, callback) {
+
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+
+            if (script.readyState) { //IE
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        callback();
+                    }
+                };
+            } else { //Others
+                script.onload = function () {
+                    callback();
+                };
+            }
+
+            script.src = url;
+            document.getElementsByTagName("body")[0].appendChild(script);
+        }
+
+        var $jsonp = (function () {
+            var that = {};
+
+            that.send = function (src, options) {
+                var callback_name = options.callbackName || 'callback',
+                        on_success = options.onSuccess || function () {
+                                },
+                        on_timeout = options.onTimeout || function () {
+                                },
+                        timeout = options.timeout || 10; // sec
+
+                var timeout_trigger = window.setTimeout(function () {
+                    window[callback_name] = function () {
+                    };
+                    on_timeout();
+                }, timeout * 1000);
+
+                window[callback_name] = function (data) {
+                    window.clearTimeout(timeout_trigger);
+                    on_success(data);
+                };
+
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.async = true;
+                script.src = src;
+
+                document.getElementsByTagName('head')[0].appendChild(script);
+            };
+
+            return that;
+        })();
+
+        loadScript("http://127.0.0.1:5001/static/cdn/js/humane.js", function () {
+
+            $jsonp.send('http://127.0.0.1:5001/widget?callback=handleStuff', {
+                callbackName: 'handleStuff',
+                onSuccess: function (json) {
+                    console.log('success!', json);
+                },
+                onTimeout: function () {
+                    console.log('timeout!');
+                },
+                timeout: 5
             });
+
         });
     })();
 </script>
