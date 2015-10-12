@@ -5,8 +5,8 @@ from flask import Flask, render_template, request, redirect, url_for, json, Resp
 app = Flask(__name__)
 
 
-@app.route('/widget', methods=['GET'])
-def widget():
+@app.route('/track', methods=['GET'])
+def track():
 
     data = {}
     data['success'] = True
