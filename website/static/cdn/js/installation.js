@@ -1,5 +1,5 @@
 if (typeof jQuery === "undefined") {
-    console.log("jQuery necessário!");
+    console.log("Erro: jQuery necessário!");
 }
 
 var theme = document.createElement('link');
