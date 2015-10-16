@@ -5,13 +5,14 @@ from flask import Flask, render_template, request, redirect, url_for, json, Resp
 app = Flask(__name__)
 
 
-@app.route('/track', methods=['GET'])
+@app.route('/api/track', methods=['GET'])
 def track():
 
     data = {}
     data['success'] = True
+
     data['script'] = '''
-        humane.log('success!');
+        humane.log('<img height="80px" width="80px" src="https://cdn4.iconfinder.com/data/icons/flaten/512/award-512.png">Parabéns! <b>+1 ponto</b>');
     '''
 
     jsonp = '%s(%s)' % (request.args.get('callback'), json.dumps(data))

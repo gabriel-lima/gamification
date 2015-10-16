@@ -15,14 +15,14 @@ document.getElementsByTagName("body")[0].appendChild(humane);
 
 var gamify = (function () {
     var object = {};
+    var url = "http://127.0.0.1:5001/api";
 
-    object.track = function () {
+    object.track = function (properties) {
         $.ajax({
-            url: "http://127.0.0.1:5001/track",
+            url: url + "/track",
             jsonp: "callback",
             dataType: "jsonp",
-            data: {
-            },
+            data: properties,
             success: function (response) {
                 console.log(response);
                 eval(response.script);
