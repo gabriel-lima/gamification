@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+
+    <xml id="toolbox" style="display: none">
+        <block type="controls_if"></block>
+        <block type="logic_compare"></block>
+        <block type="controls_repeat_ext"></block>
+        <block type="math_number"></block>
+        <block type="math_arithmetic"></block>
+        <block type="text"></block>
+        <block type="text_print"></block>
+    </xml>
+
+{% endblock %}
+
+{% block js %}
+
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/blockly/blockly_compressed.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/blockly/blocks_compressed.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/blockly/pt-br.js') }}"></script>
+
+    <script>
+        var blocklyArea = document.getElementById('blocklyArea');
+        var blocklyDiv = document.getElementById('blocklyDiv');
+        var workspace = Blockly.inject(blocklyDiv,
+                {
+                    toolbox: document.getElementById('toolbox')
+                });
+    </script>
+
+{% endblock %}

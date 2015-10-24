@@ -19,7 +19,7 @@
     <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
     <!-- For Windows Phone -->
 
-    <link href="{{ url_for('static', filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet"
+    <link href="{{ url_for('static', filename='vendor/materialize/materialize.min.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection">
     <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection">
@@ -150,7 +150,7 @@
                     <a href="" class="waves-effect waves-cyan"><i class="material-icons">attach_money</i> Finanças</a>
                 </li>
                 <li class="bold">
-                    <a href="{{ url_for('lista_de_clientes') }}" class="waves-effect waves-cyan">
+                    <a href="" class="waves-effect waves-cyan">
                         <i class="material-icons">contacts</i> Clientes
                     </a>
                 </li>
@@ -164,62 +164,12 @@
             {% block breadcrumbs %}
             {% endblock %}
 
-            <div class="preloader-wrapper big active" style="margin-left: 40%; margin-top: 15%;">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-
             <!--start container-->
             <div class="container">
-                <div class="section" style="display:none;">
+{#                <div class="section" style="display:none;">#}
                     {% block conteudo %}
                     {% endblock %}
-                </div>
+{#                </div>#}
             </div>
 
         </section>
@@ -232,21 +182,9 @@
 <!-- END MAIN -->
 
 <!-- jQuery Library -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='vendor/jquery/jquery-1.11.2.min.js') }}"></script>
 <!--materialize js-->
-<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
-
-<script>
-    $(document).ready(function () {
-        $(window).load(function () {
-            setTimeout(function () {
-                $('.preloader-wrapper').fadeOut('slow', function () {
-                    $('.section').fadeIn('slow');
-                });
-            }, 0);
-        });
-    });
-</script>
+<script type="text/javascript" src="{{ url_for('static', filename='vendor/materialize/materialize.min.js') }}"></script>
 
 {% block js %}
 {% endblock %}

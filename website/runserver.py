@@ -1,50 +1,11 @@
 # encoding: utf-8
-from flask import Flask, render_template, request, redirect, url_for, json, Response
-
+from flask import Flask
+from api import api
+from web import web
 
 app = Flask(__name__)
-
-
-@app.route('/api/track', methods=['GET'])
-def track():
-
-    data = {}
-    data['success'] = True
-
-    data['script'] = '''
-        humane.log('<img height="80px" width="80px" src="https://cdn4.iconfinder.com/data/icons/flaten/512/award-512.png">Parabéns! <b>+1 ponto</b>');
-    '''
-
-    jsonp = '%s(%s)' % (request.args.get('callback'), json.dumps(data))
-    return Response(jsonp, content_type='text/javascript')
-
-
-@app.route('/')
-def index():
-    return render_template('base.html')
-
-
-@app.route('/clientes/cadastrar', methods=['GET'])
-def novo_cliente():
-    return render_template('clientes/novo.html')
-
-
-@app.route('/clientes/cadastrar', methods=['POST'])
-def criar_cliente():
-    print request.form['nome']
-    print request.form['sobrenome']
-    print request.form['email']
-    print request.form['telefone']
-    print request.form['tipo_pessoa']
-    # print request.form['data_nascimento']
-    print request.form['observacoes']
-
-    return redirect(url_for('lista_de_clientes'))
-
-
-@app.route('/clientes', methods=['GET'])
-def lista_de_clientes():
-    return render_template('clientes/lista.html')
+app.register_blueprint(api)
+app.register_blueprint(web)
 
 
 if __name__ == '__main__':
