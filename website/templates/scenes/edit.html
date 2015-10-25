@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+
+    <a id="js-salvar" class="waves-effect waves-light btn-large">Salvar</a>
+
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+
+    <xml id="toolbox" style="display: none">
+        <category name="Lógica">
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_negate"></block>
+            <block type="logic_boolean"></block>
+        </category>
+        <category name="Propriedades">
+            <block type="property_event"></block>
+        </category>
+        <category name="Eventos">
+            <block type="event_adicionou_no_carrinho"></block>
+            <block type="event_iniciou_compra"></block>
+            <block type="event_finalizou_compra"></block>
+        </category>
+        <category name="Gamificar">
+            <block type="block_cupom_desconto"></block>
+            <block type="block_frete_gratis"></block>
+        </category>
+    </xml>
+
+{% endblock %}
+
+{% block js %}
+
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='vendor/blockly/blockly_compressed.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='vendor/blockly/blocks_compressed.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='vendor/blockly/python_compressed.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static', filename='vendor/blockly/pt-br.js') }}"></script>
+
+    <script>
+        function block_frete_gratis() {
+            Blockly.Blocks['block_frete_gratis'] = {
+                init: function () {
+                    this.setColour(160);
+                    this.appendDummyInput()
+                            .appendField('frete grátis');
+                    this.setPreviousStatement(true);
+                }
+            };
+
+            Blockly.Python['block_frete_gratis'] = function (block) {
+                return "gamify.command('frete_gratis')";
+            };
+        }
+
+        function block_cupom_desconto() {
+            Blockly.Blocks['block_cupom_desconto'] = {
+                init: function () {
+                    this.setColour(160);
+                    this.appendDummyInput()
+                            .appendField('cupom de desconto');
+                    this.setPreviousStatement(true);
+                }
+            };
+
+            Blockly.Python['block_cupom_desconto'] = function (block) {
+                return "gamify.command('cupom_desconto')";
+            };
+        }
+
+        function property_event() {
+            Blockly.Blocks['property_event'] = {
+                init: function () {
+                    this.setColour(160);
+                    this.appendDummyInput()
+                            .appendField(new Blockly.FieldVariable('evento'));
+                    this.setOutput(true, 'String');
+                    this.setEditable(false);
+                }
+            };
+
+            Blockly.Python['property_event'] = function (block) {
+                return ['event', Blockly.Python.VAR];
+            };
+        }
+
+        function event_adicionou_no_carrinho() {
+            Blockly.Blocks['event_adicionou_no_carrinho'] = {
+                init: function () {
+                    this.setColour(160);
+                    this.appendDummyInput()
+                            .appendField(new Blockly.FieldVariable('adicionou_no_carrinho'));
+                    this.setOutput(true, 'String');
+                    this.setEditable(false);
+                    this.data = 'adicionou_no_carrinho';
+                }
+            };
+
+            Blockly.Python['event_adicionou_no_carrinho'] = function (block) {
+                return ['"adicionou_no_carrinho"', Blockly.Python.STRING_TYPE];
+            };
+        }
+
+        function event_finalizou_compra() {
+            Blockly.Blocks['event_finalizou_compra'] = {
+                init: function () {
+                    this.setColour(160);
+                    this.appendDummyInput()
+                            .appendField(new Blockly.FieldVariable('finalizou_compra'));
+                    this.setOutput(true, 'String');
+                    this.setEditable(false);
+                    this.data = 'finalizou_compra';
+                }
+            };
+
+            Blockly.Python['event_finalizou_compra'] = function (block) {
+                return ['"finalizou_compra"', Blockly.Python.STRING_TYPE];
+            };
+        }
+
+        function event_iniciou_compra() {
+            Blockly.Blocks['event_iniciou_compra'] = {
+                init: function () {
+                    this.setColour(160);
+                    this.appendDummyInput()
+                            .appendField(new Blockly.FieldVariable('iniciou_compra'));
+                    this.setOutput(true, 'String');
+                    this.setEditable(false);
+                    this.data = 'iniciou_compra';
+                }
+            };
+
+            Blockly.Python['event_iniciou_compra'] = function (block) {
+                return ['"iniciou_compra"', Blockly.Python.STRING_TYPE];
+            };
+        }
+
+        var blocklyDiv = document.getElementById('blocklyDiv');
+        var workspace = Blockly.inject(blocklyDiv,
+                {
+                    toolbox: document.getElementById('toolbox')
+                });
+
+        block_frete_gratis();
+        block_cupom_desconto();
+        property_event();
+        event_adicionou_no_carrinho();
+        event_iniciou_compra();
+        event_finalizou_compra();
+
+        $.ajax({
+            url: "{{ url_for('web.load_xml_scene', scene_id=scene_id) }}",
+            method: 'GET',
+            success: function (response) {
+                if (response) {
+                    Blockly.Xml.domToWorkspace(workspace, response.documentElement);
+                }
+            }
+        });
+
+        $('#js-salvar').click(function () {
+            $.ajax({
+                url: "{{ url_for('web.save_xml_scene', scene_id=scene_id) }}",
+                method: 'POST',
+                contentType: 'text/xml',
+                data: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
+            });
+
+            $.ajax({
+                url: "{{ url_for('web.save_python_scene', scene_id=scene_id) }}",
+                method: 'POST',
+                contentType: 'text',
+                data: Blockly.Python.workspaceToCode(workspace)
+            });
+        });
+    </script>
+
+{% endblock %}
