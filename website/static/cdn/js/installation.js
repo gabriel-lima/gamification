@@ -17,14 +17,13 @@ var gamify = (function () {
     var object = {};
     var url = "http://127.0.0.1:5001/api";
 
-    object.track = function (properties) {
+    object.track = function (properties, callback) {
         $.ajax({
             url: url + "/track",
             jsonp: "callback",
             dataType: "jsonp",
             data: properties,
             success: function (response) {
-                console.log(response);
                 eval(response.script);
             }
         });
