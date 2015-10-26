@@ -24,10 +24,16 @@ def edit_scene(scene_id):
     return render_template('scenes/edit.html', scene_id=scene_id)
 
 
+@web.route('/scenes', methods=['GET'])
+def list_scenes():
+    scenes = scene_gateway.all()
+    return render_template('scenes/list.html', scenes=scenes)
+
+
 @web.route('/scene/xml/load/<int:scene_id>', methods=['GET'])
 def load_xml_scene(scene_id):
     scene = scene_gateway.get_by(scene_id)
-    return Response(scene.format_xml, content_type='text/xml')
+    return Response(scene.storage_xml, content_type='text/xml')
 
 
 @web.route('/scene/xml/save', methods=['POST'])
@@ -38,7 +44,7 @@ def save_xml_scene(scene_id=None):
     except SceneNotFoundException:
         scene = SceneStruct()
 
-    scene.format_xml = request.data
+    scene.storage_xml = request.data
     scene_gateway.save(scene)
 
     return Response(json.dumps({'scene_id': scene.scene_id}), content_type='application/json')
