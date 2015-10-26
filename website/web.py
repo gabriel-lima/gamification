@@ -1,4 +1,3 @@
-# coding: utf-8
 import json
 from flask import render_template, Blueprint, request, Response
 from website import scene_gateway
@@ -57,4 +56,3 @@ def save_python_scene(scene_id):
     scene_gateway.save(scene)
 
     return Response()
-
