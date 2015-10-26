@@ -173,7 +173,7 @@
                                 </tbody>
                             </table>
                             <p class="right-align">
-                                <a href="shop.html" class="btn btn-primary higher bold">CONFIRM &amp; PAY</a>
+                                <a id="js-confirm-and-pay" class="btn btn-primary higher bold">CONFIRM &amp; PAY</a>
                             </p>
                         </div>
                     </div>
@@ -204,5 +204,17 @@
 <script src="js/prettyphoto/js/jquery.prettyPhoto.js" type="text/javascript"></script>
 
 <script src="js/custom.js" type="text/javascript"></script>
+
+<script src="http://127.0.0.1:5001/static/cdn/js/installation.js"></script>
+
+<script>
+    $(function () {
+        $('#js-confirm-and-pay').bind('click', function () {
+            gamify.track({event: 'finalizou_compra'}, function() {
+                window.location = 'shop.html';
+            });
+        });
+    });
+</script>
 </body>
 </html>
