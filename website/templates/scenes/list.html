@@ -23,7 +23,7 @@
         <div class="col s12">
             <div class="card-panel">
                 <h4 class="header2">Clientes</h4>
-                <table class="hoverable">
+                <table class="highlight">
                     <thead>
                     <tr>
                         <th data-field="id">Nome</th>
@@ -41,10 +41,33 @@
         </div>
     </div>
 
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+        <form id="form-scene-name" action="{{ url_for('web.create_scene') }}" method="post">
+            <div class="modal-content">
+                <div class="input-field col s6">
+                    <input id="scene_name" name="scene_name" type="text" class="validate">
+                    <label for="scene_name">Nome do Cenário</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a onclick="document.getElementById('form-scene-name').submit()"
+                   class=" modal-action modal-close waves-effect waves-green btn-flat">Criar</a>
+            </div>
+        </form>
+    </div>
+
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large waves-effect waves-light red" href="{{ url_for('web.new_scene') }}">
+        <a class="btn-floating modal-trigger btn-large waves-effect waves-light red" href="#modal1">
             <i class="material-icons">add</i>
         </a>
     </div>
 
+{% endblock %}
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $('.modal-trigger').leanModal();
+        });
+    </script>
 {% endblock %}

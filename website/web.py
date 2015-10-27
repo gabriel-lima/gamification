@@ -1,5 +1,5 @@
 import json
-from flask import render_template, Blueprint, request, Response
+from flask import render_template, Blueprint, request, Response, redirect, url_for
 from website import scene_gateway
 from scene_struct import SceneStruct
 from website.scene_gateway_memory import SceneNotFoundException
@@ -13,9 +13,11 @@ def index():
     return render_template('base.html')
 
 
-@web.route('/scene/new', methods=['GET'])
-def new_scene():
-    return render_template('scenes/new.html')
+@web.route('/scene/create', methods=['POST'])
+def create_scene():
+    scene = SceneStruct(name=request.form['scene_name'])
+    scene_gateway.save(scene)
+    return redirect(url_for('web.edit_scene', scene_id=scene.scene_id))
 
 
 @web.route('/scene/<int:scene_id>', methods=['GET'])
