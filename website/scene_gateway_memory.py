@@ -16,6 +16,10 @@ class SceneGatewayMemory(object):
             self.records.remove(old_scene)
         self.records.append(scene)
 
+    def delete(self, scene_id):
+        scene = self.get_by(scene_id)
+        self.records.remove(scene)
+
     def get_by(self, scene_id):
         for record in self.records:
             if record.scene_id == scene_id:

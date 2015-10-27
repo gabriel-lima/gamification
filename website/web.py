@@ -15,7 +15,8 @@ def index():
 
 @web.route('/scene/create', methods=['POST'])
 def create_scene():
-    scene = SceneStruct(name=request.form['scene_name'])
+    scene = SceneStruct(name=request.form['scene_name'],
+                        description=request.form['scene_description'])
     scene_gateway.save(scene)
     return redirect(url_for('web.edit_scene', scene_id=scene.scene_id))
 
@@ -23,6 +24,12 @@ def create_scene():
 @web.route('/scene/<int:scene_id>', methods=['GET'])
 def edit_scene(scene_id):
     return render_template('scenes/edit.html', scene_id=scene_id)
+
+
+@web.route('/scene/delete/<int:scene_id>', methods=['GET'])
+def delete_scene(scene_id):
+    scene_gateway.delete(scene_id)
+    return redirect(url_for('web.list_scenes'))
 
 
 @web.route('/scenes', methods=['GET'])
