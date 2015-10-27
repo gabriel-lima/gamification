@@ -33,7 +33,7 @@
 
                                     <p>{{ scene.description }}</p>
                                 </div>
-                                <div class="card-action">
+                                <div class="card-action" style="border-top: 1px solid rgb(233, 170, 73);">
                                     <a href="{{ url_for('web.edit_scene', scene_id=scene.scene_id) }}">Editar</a>
                                     <a href="{{ url_for('web.delete_scene', scene_id=scene.scene_id) }}">Deletar</a>
                                 </div>
