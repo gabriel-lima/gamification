@@ -23,7 +23,8 @@ def create_scene():
 
 @web.route('/scene/<int:scene_id>', methods=['GET'])
 def edit_scene(scene_id):
-    return render_template('scenes/edit.html', scene_id=scene_id)
+    scene = scene_gateway.get_by(scene_id)
+    return render_template('scenes/edit.html', scene=scene)
 
 
 @web.route('/scene/delete/<int:scene_id>', methods=['GET'])

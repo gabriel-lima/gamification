@@ -1,10 +1,49 @@
 {% extends "base.html" %}
 
+{% block breadcrumbs %}
+
+    <div id="breadcrumbs-wrapper" class="grey lighten-3">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ url_for('web.list_scenes') }}">Cenários</a></li>
+                        <li class="active">{{ scene.name }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
 {% block conteudo %}
 
-    <a id="js-salvar" class="waves-effect waves-light btn-large">Salvar</a>
+    <div class="row">
+        <div class="col s12">
+            <div class="card-panel">
+                <h4 class="header2">{{ scene.name }}</h4>
+                <p>{{ scene.description }}</p>
+                <div class="row">
+                    <div class="col s8">
+                        <div class="card cyan darken-2">
+                            <div class="card-action">
+                                <a id="js-salvar" class="waves-effect waves-light btn">Salvar & Sair</a>
+                            </div>
+                            <div class="card-content white-text">
+                                <span class="card-title"></span>
 
-    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+                                <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+                                <p></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <xml id="toolbox" style="display: none">
         <category name="Lógica">
@@ -153,7 +192,7 @@
         event_finalizou_compra();
 
         $.ajax({
-            url: "{{ url_for('web.load_xml_scene', scene_id=scene_id) }}",
+            url: "{{ url_for('web.load_xml_scene', scene_id=scene.scene_id) }}",
             method: 'GET',
             success: function (response) {
                 if (response) {
@@ -164,18 +203,20 @@
 
         $('#js-salvar').click(function () {
             $.ajax({
-                url: "{{ url_for('web.save_xml_scene', scene_id=scene_id) }}",
+                url: "{{ url_for('web.save_xml_scene', scene_id=scene.scene_id) }}",
                 method: 'POST',
                 contentType: 'text/xml',
                 data: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
             });
 
             $.ajax({
-                url: "{{ url_for('web.save_python_scene', scene_id=scene_id) }}",
+                url: "{{ url_for('web.save_python_scene', scene_id=scene.scene_id) }}",
                 method: 'POST',
                 contentType: 'text',
                 data: Blockly.Python.workspaceToCode(workspace)
             });
+
+            window.location = "{{ url_for('web.list_scenes') }}";
         });
     </script>
 
