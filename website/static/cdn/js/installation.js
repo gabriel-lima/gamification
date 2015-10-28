@@ -18,6 +18,10 @@ var gamify = (function () {
     var url = "http://127.0.0.1:5001/api";
 
     object.track = function (properties, callback) {
+        if (typeof callback == 'undefined') {
+            callback = function(){};
+        }
+
         $.ajax({
             url: url + "/track",
             jsonp: "callback",
