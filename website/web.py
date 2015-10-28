@@ -10,16 +10,13 @@ from gateways import SceneNotFoundException
 web = Blueprint('web', __name__)
 
 
+from storage import populate_storage
+populate_storage()
+
+
 @web.route('/')
 def index():
     return render_template('base.html')
-
-
-@web.route('/populate')
-def populate():
-    from storage import populate_storage
-    populate_storage()
-    return redirect(url_for('web.list_scenes'))
 
 
 @web.route('/scene/create', methods=['POST'])
