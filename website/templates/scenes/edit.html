@@ -22,21 +22,22 @@
     <div class="row">
         <div class="col s12">
             <div class="card-panel">
-                <h4 class="header2">{{ scene.name }}</h4>
-                <p>{{ scene.description }}</p>
                 <div class="row">
-                    <div class="col s8">
+                    <div class="col s12">
                         <div class="card cyan darken-2">
                             <div class="card-content white-text">
-                                <span class="card-title"></span>
-
-                                <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
-                                <p></p>
+                                <span class="card-title">{{ scene.name }}</span>
+                                <p>{{ scene.description }}</p>
                             </div>
                             <div class="card-action" style="border-top: 1px solid rgb(233, 170, 73);">
                                 <a id="js-salvar" class="waves-effect waves-light btn">Salvar & Sair</a>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div id="blocklyDiv" style="min-height: 500px; width: 100%;"></div>
                     </div>
                 </div>
             </div>

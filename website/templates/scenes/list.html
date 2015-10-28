@@ -20,8 +20,8 @@
 
     <div class="row">
         <div class="col s12">
-            <div class="card-panel white-text">
-                <h4 class="header2">Lista de Cenários</h4>
+            <div class="card-panel">
+                <h4 class="header2" style="color: #ffab40;">Lista de Cenários</h4>
                 <div class="row">
 
                     {% for scene in scenes %}
@@ -34,6 +34,7 @@
                                 <div class="card-action" style="border-top: 1px solid rgb(233, 170, 73);">
                                     <a href="{{ url_for('web.edit_scene', scene_id=scene.scene_id) }}">Editar</a>
                                     <a href="{{ url_for('web.delete_scene', scene_id=scene.scene_id) }}">Deletar</a>
+                                    <a href="{{ url_for('web.clone_scene', scene_id=scene.scene_id) }}">Clonar</a>
                                 </div>
                             </div>
                         </div>

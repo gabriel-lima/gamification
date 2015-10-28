@@ -1,8 +1,10 @@
 import json
+
 from flask import render_template, Blueprint, request, Response, redirect, url_for
+
 from website import scene_gateway
-from scene_struct import SceneStruct
-from website.scene_gateway_memory import SceneNotFoundException
+from core import SceneStruct
+from gateways import SceneNotFoundException
 
 
 web = Blueprint('web', __name__)
@@ -11,6 +13,13 @@ web = Blueprint('web', __name__)
 @web.route('/')
 def index():
     return render_template('base.html')
+
+
+@web.route('/populate')
+def populate():
+    from storage import populate_storage
+    populate_storage()
+    return redirect(url_for('web.list_scenes'))
 
 
 @web.route('/scene/create', methods=['POST'])
@@ -30,6 +39,14 @@ def edit_scene(scene_id):
 @web.route('/scene/delete/<int:scene_id>', methods=['GET'])
 def delete_scene(scene_id):
     scene_gateway.delete(scene_id)
+    return redirect(url_for('web.list_scenes'))
+
+
+@web.route('/scene/clone/<int:scene_id>', methods=['GET'])
+def clone_scene(scene_id):
+    scene = scene_gateway.get_by(scene_id)
+    scene.scene_id = None
+    scene_gateway.save(scene)
     return redirect(url_for('web.list_scenes'))
 
 
@@ -66,3 +83,4 @@ def save_python_scene(scene_id):
     scene_gateway.save(scene)
 
     return Response()
+

@@ -1,8 +1,7 @@
 import json
 from flask import request, Response, Blueprint
 from website import scene_gateway
-from core import Engine
-from core import GamifyCommand
+from core import Engine, GamifyCommand
 
 
 api = Blueprint('api', __name__)
