@@ -27,4 +27,4 @@ class SceneGatewayMemory(object):
         raise SceneNotFoundException()
 
     def all(self):
-        return self.records
+        return sorted(self.records, key=lambda scene: scene.scene_id)
