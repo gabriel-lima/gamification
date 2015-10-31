@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -10,7 +10,7 @@
     <title>Minhas Vendas | Software de Gestão de Vendas</title>
 
     <!-- Favicons-->
-    <link rel="icon" href="http://demo.geekslabs.com/materialize/v1.1/images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon-logo.png') }}" sizes="32x32">
     <!-- Favicons-->
     <link rel="apple-touch-icon-precomposed"
           href="http://demo.geekslabs.com/materialize/v1.1/images/favicon/apple-touch-icon-152x152.png">
@@ -19,18 +19,56 @@
     <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
     <!-- For Windows Phone -->
 
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet"
+    <link href="{{ url_for('static', filename='vendor/materialize/materialize.min.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection">
     <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection">
 
     <style>
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: url({{ url_for('static', filename='font/MaterialIcons-Regular.eot') }});
+            src: local('Material Icons'),
+            local('MaterialIcons-Regular'),
+            url({{ url_for('static', filename='font/MaterialIcons-Regular.woff2') }}) format('woff2'),
+            url({{ url_for('static', filename='font/MaterialIcons-Regular.woff') }}) format('woff'),
+            url({{ url_for('static', filename='font/MaterialIcons-Regular.ttf') }}) format('truetype');
+        }
+
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px; /* Preferred icon size */
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+
+            /* Support for all WebKit browsers. */
+            -webkit-font-smoothing: antialiased;
+            /* Support for Safari and Chrome. */
+            text-rendering: optimizeLegibility;
+
+            /* Support for Firefox. */
+            -moz-osx-font-smoothing: grayscale;
+
+            /* Support for IE. */
+            font-feature-settings: 'liga';
+        }
+
         span.badge.new:after {
             content: " visitas";
         }
     </style>
+
+    {% block css %}
+    {% endblock %}
 </head>
 
 <body class="loaded">
@@ -52,23 +90,8 @@
             <div class="nav-wrapper">
                 <h1 class="logo-wrapper"><a href="" class="brand-logo darken-1">
                     <img style="height: 70px;margin-top: -8px;margin-left: -8px;"
-                         src="{{ url_for('static', filename='images/logo.png') }}" alt="materialize logo"></a></h1>
-                <ul class="right hide-on-med-and-down">
-                    <li class="search-out">
-                        <input type="text" class="search-out-text">
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="waves-effect waves-block waves-light show-search"><i
-                                class="mdi-action-search"></i></a>
-                    </li>
-                    <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light"><i
-                            class="mdi-social-notifications"></i></a>
-                    </li>
-                    <li><a href=""
-                           data-activates="chat-out" class="waves-effect waves-block waves-light chat-collapse"><i
-                            class="mdi-communication-chat"></i></a>
-                    </li>
-                </ul>
+                         src="{{ url_for('static', filename='images/logo.png') }}" alt="materialize logo"></a>
+                </h1>
             </div>
         </nav>
     </div>
@@ -114,22 +137,10 @@
                     </div>
                 </li>
                 <li class="bold">
-                    <a href="" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
+                    <a href="{{ url_for('web.list_scenes') }}" class="waves-effect waves-cyan"><i class="material-icons">dashboard</i> Cenários</a>
                 </li>
                 <li class="bold">
-                    <a href="" class="waves-effect waves-cyan"><i class="material-icons">work</i> Vendas</a>
-                </li>
-                <li class="bold">
-                    <a href="" class="waves-effect waves-cyan"><i class="material-icons">event_note</i> Agenda
-                        <span class="new badge">4</span></a>
-                </li>
-                <li class="bold">
-                    <a href="" class="waves-effect waves-cyan"><i class="material-icons">attach_money</i> Finanças</a>
-                </li>
-                <li class="bold">
-                    <a href="{{ url_for('lista_de_clientes') }}" class="waves-effect waves-cyan">
-                        <i class="material-icons">contacts</i> Clientes
-                    </a>
+                    <a href="" class="waves-effect waves-cyan"><i class="material-icons">label</i> Eventos</a>
                 </li>
             </ul>
         </aside>
@@ -141,89 +152,16 @@
             {% block breadcrumbs %}
             {% endblock %}
 
-            <div class="preloader-wrapper big active" style="margin-left: 40%; margin-top: 15%;">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-
             <!--start container-->
             <div class="container">
-                <div class="section" style="display:none;">
+{#                <div class="section" style="display:none;">#}
                     {% block conteudo %}
                     {% endblock %}
-                </div>
+{#                </div>#}
             </div>
 
         </section>
         <!-- END CONTENT -->
-
-        <!-- //////////////////////////////////////////////////////////////////////////// -->
-        <!-- START RIGHT SIDEBAR NAV-->
-        <aside id="right-sidebar-nav">
-            <ul id="chat-out" class="side-nav rightside-navigation right-aligned ps-container ps-active-y"
-                style="right: -250px; height: 739px;">
-                <li class="li-hover">
-                    <a href="" data-activates="chat-out"
-                       class="chat-close-collapse right"><i class="mdi-navigation-close"></i></a>
-
-                    <div id="right-search" class="row">
-                        <form class="col s12">
-                            <div class="input-field">
-                                <i class="mdi-action-search prefix"></i>
-                                <input id="icon_prefix3" type="text" class="validate">
-                                <label for="icon_prefix">Search</label>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-            </ul>
-        </aside>
-        <!-- LEFT RIGHT SIDEBAR NAV-->
 
     </div>
     <!-- END WRAPPER -->
@@ -232,21 +170,9 @@
 <!-- END MAIN -->
 
 <!-- jQuery Library -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='vendor/jquery/jquery-1.11.2.min.js') }}"></script>
 <!--materialize js-->
-<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
-
-<script>
-    $(document).ready(function () {
-        $(window).load(function () {
-            setTimeout(function () {
-                $('.preloader-wrapper').fadeOut('slow', function () {
-                    $('.section').fadeIn('slow');
-                });
-            }, 0);
-        });
-    });
-</script>
+<script type="text/javascript" src="{{ url_for('static', filename='vendor/materialize/materialize.min.js') }}"></script>
 
 {% block js %}
 {% endblock %}
