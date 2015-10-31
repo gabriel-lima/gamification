@@ -8,7 +8,7 @@ function validEmail(mail){
 
 }
 function send_mail(){
-	 var fname='', mail='', country='',zip='';
+	 var fname='', mail='';
 	 
 	  fname=$('#fname').val();
 	  mail=$('#uemail').val();
@@ -17,7 +17,6 @@ function send_mail(){
 	 else if(mail=='')		 $('#form-errors').text('Precisamos do seu e-mail !');
 	 else if(!(validEmail(mail)))	 $('#form-errors').text('Acho que o e-mail está incorreto !');
 	 else{
-		 
 		  $.ajax({
 			url:'ajaxmail.php',
 			type:'POST',
