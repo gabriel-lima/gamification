@@ -12,24 +12,17 @@ function send_mail(){
 	 
 	  fname=$('#fname').val();
 	  mail=$('#uemail').val();
-	  country =$('#ucountry').val(); 
-	  zip =$('#uzip').val();
 	 
-	 if((fname=='')) 		 $('#form-errors').text('Sorry, first name is required !');
-	 else if(mail=='')		 $('#form-errors').text('Sorry, email required !');
-	 else if(!(validEmail(mail)))	 $('#form-errors').text('Sorry, Please provide a valid email !');	
-	 else if(country=='') 		 $('#form-errors').text('Sorry, country field is required !');
-	 else if(zip=='') 		 $('#form-errors').text('Sorry, zipcode is required !');
-	
+	 if((fname=='')) 		 $('#form-errors').text('Queremos saber seu nome !');
+	 else if(mail=='')		 $('#form-errors').text('Precisamos do seu e-mail !');
+	 else if(!(validEmail(mail)))	 $('#form-errors').text('Acho que o e-mail está incorreto !');
 	 else{
 		 
 		  $.ajax({
 			url:'ajaxmail.php',
 			type:'POST',
 			data:{ 'fname':fname,
-				   'uemail':mail,
-				   'ucountry':country,
-				   'uzip':zip,
+				   'uemail':mail
 				  },
 			dataType:'json',
 			success:function(response){ 
@@ -38,8 +31,6 @@ function send_mail(){
 							$('#form-success').text('Your request is received, Thank You !'); 
 							$('#fname').val('');
 							$('#uemail').val('');
-							$('#ucountry').val('');
-							$('#uzip').val(''); 
 							}
 						else{ $('#form-errors').text('Request failed.Please retry with all the required details !'); } 
 					},
